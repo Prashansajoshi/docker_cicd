@@ -38,10 +38,7 @@
 
   roles: 
     
-    - git
-    - nginx
-    - node
-    - mysql
+    - docker
 
 
 
