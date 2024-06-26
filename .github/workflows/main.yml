@@ -58,7 +58,7 @@ jobs:
 
     setup_ansible:
         runs-on: ubuntu-latest
-        needs: terraform_infrastructure  ###
+        needs: terraform_infrastructure 
         steps:
         - name: Checkout
           uses: actions/checkout@v4
