@@ -2,7 +2,7 @@ name: terraform_infrastructure
 on:
     workflow_dispatch:
     push:
-      branches: [ "stage" ] ##########
+      branches: [ "stage" ] 
     pull_request:
       branches: [ "main" ] 
 
@@ -52,7 +52,7 @@ jobs:
 
     #   - name: Terraform Destroy
     #     run: terraform destroy
-    #     working-directory: terraform #######
+    #     working-directory: terraform 
 
 
 
@@ -101,15 +101,15 @@ jobs:
         - name: Ansible Inventory
           run: cd ansible && ansible-inventory -i aws_ec2.yml --graph 
 
-        - name: Ansible Playbook
-          run: |
-            ansible-playbook ansible/configure.yml -i ansible/aws_ec2.yml -v
+        # - name: Ansible Playbook
+        #   run: |
+        #     ansible-playbook ansible/configure.yml -i ansible/aws_ec2.yml -v
 
-        - name: ansible graph
-          run: |
-            ansible all --list-hosts &&
-            ansible-inventory -i aws_ec2.yaml --graph -vvv
-          working-directory: ansible
+        # - name: ansible graph
+        #   run: |
+        #     ansible all --list-hosts &&
+        #     ansible-inventory -i aws_ec2.yaml --graph -vvv
+        #   working-directory: ansible
 
         - name: Run Ansible Playbook
           run: ansible-playbook -i aws_ec2.yml configure.yml
