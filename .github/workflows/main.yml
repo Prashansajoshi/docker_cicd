@@ -224,6 +224,8 @@ jobs:
   
             working-directory: /home/ubuntu/
             command: |
+              pwd
+              ls
               aws s3 cp s3://prashansa-s3-bucket/prashansa-nodejs-app.tar /home/ubuntu/
               # sudo docker load --input prashansa-nodejs-app.tar
               # sudo docker run -d -p 2090:8000 --name node_app prashansa-nodejs-app:001
