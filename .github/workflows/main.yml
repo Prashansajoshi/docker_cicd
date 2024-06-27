@@ -27,7 +27,7 @@ jobs:
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: us-east-1
 
-      - name: Echo Hello World
+      - name: Echo Hello World   
         run: aws sts get-caller-identity
 
       - name: Setup Terraform
@@ -227,3 +227,5 @@ jobs:
               pwd
               ls
               aws s3 cp s3://prashansa-s3-bucket/prashansa-nodejs-app.tar /home/ubuntu/
+              sudo docker load --input prashansa-nodejs-app.tar
+              sudo docker run -d -p 8000:8000 --name node_app_1 prashansa-nodejs-app:001

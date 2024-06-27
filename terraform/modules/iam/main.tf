@@ -18,9 +18,18 @@ data "aws_iam_policy" "aws_managed_policy" {
   arn = "arn:aws:iam::aws:policy/AmazonSSMFullAccess"
 }
 
+data "aws_iam_policy" "s3_read_only_access" {
+  arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+}
+
 resource "aws_iam_role_policy_attachment" "role_policy_attachment_SSM" {
   role       = aws_iam_role.this.name
   policy_arn = data.aws_iam_policy.aws_managed_policy.arn
+}
+
+resource "aws_iam_role_policy_attachment" "attach_s3_read_only_access" {
+  role       = aws_iam_role.this.name
+  policy_arn = data.aws_iam_policy.s3_read_only_access.arn
 }
 
 resource "aws_iam_instance_profile" "this" {
