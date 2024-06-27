@@ -2,7 +2,7 @@ name: terraform_infrastructure
 on:
     workflow_dispatch:
     push:
-      branches: [ "stage" ]
+      branches: [ "stage" ] ##########
     pull_request:
       branches: [ "main" ] 
 
