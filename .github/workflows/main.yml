@@ -197,21 +197,19 @@ jobs:
               curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" 
               unzip awscliv2.zip
               sudo ./aws/install
-
-
       
-              - name: AWS SSM Send-Command
-                uses: adexltd/aws-ssm-send-command@master
-                id: transfer-code
-                with:
-                  aws-region: us-east-1
-                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-                  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                  aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-                  instance-ids: ${{ secrets.INSTANCE_ID }}
-        
-                  working-directory: /home/ubuntu/
-                  command: |
-                    aws s3 cp s3://prashansa-s3-bucket/prashansa-nodejs-app.tar /home/ubuntu/
-                    sudo docker load --input prashansa-nodejs-app.tar
-                    sudo docker run -d -p 2090:8000 --name node_app_1 prashansa-nodejs-app:001
+        - name: AWS SSM Send-Command
+          uses: adexltd/aws-ssm-send-command@master
+          id: transfer-code
+          with:
+            aws-region: us-east-1
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+            instance-ids: ${{ secrets.INSTANCE_ID }}
+  
+            working-directory: /home/ubuntu/
+            command: |
+              aws s3 cp s3://prashansa-s3-bucket/prashansa-nodejs-app.tar /home/ubuntu/
+              sudo docker load --input prashansa-nodejs-app.tar
+              sudo docker run -d -p 2090:8000 --name node_app_1 prashansa-nodejs-app:001
