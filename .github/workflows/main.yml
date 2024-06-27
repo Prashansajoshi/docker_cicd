@@ -158,3 +158,9 @@ jobs:
 
         - name: Save docker image
           run: docker save -o prashansa-nodejs-app.tar prashansa-nodejs-app:001
+
+        - name: Ensure boto3 and botocore modules are installed
+          run : pip3 install boto3 botocore
+
+        - name: Upload tar docker image to S3
+          run: aws s3 cp prashansa-nodejs-app.tar s3://prashansa-s3-bucket/prashansa-nodejs-app.tar
